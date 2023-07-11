@@ -159,8 +159,8 @@ const tierFilter = (tier: number) => {
           <section class="name-container">
             <span class="pokedex-name"> {{ pkmn.nombre }} </span>
             <section class="type-section">
-              <img class="type-icon" src="src/assets/{{pkmn.tipo_1}}.svg" alt="Tipo 1" />
-              <img v-if="pkmn.tipo_2" class="type-icon" src="src/assets/{{pkmn.tipo_2}}.svg" alt="Tipo 1" />
+              <img class="type-icon" :src="'@/assets/'+ pkmn.tipo_1 +'.svg'" alt="Tipo 1" />
+              <img v-if="pkmn.tipo_2" class="type-icon" :src="'@/asddsets/'+ pkmn.tipo_2 +'.svg'" alt="Tipo 1" />
             </section>
           </section>
         </section>
