@@ -4,8 +4,30 @@
 
 import { pkmns } from '@/data/pkmn.js';
 import { ref, onMounted } from 'vue';
+import acero from '@/assets/acero.svg';
+import agua from '@/assets/agua.svg';
+import bicho from '@/assets/bicho.svg';
+import dragon from '@/assets/dragón.svg';
+import electrico from '@/assets/eléctrico.svg';
+import fantasma from '@/assets/fantasma.svg';
+import fuego from '@/assets/fuego.svg';
+import hada from '@/assets/hada.svg';
+import hielo from '@/assets/hielo.svg';
+import lucha from '@/assets/lucha.svg';
+import normal from '@/assets/normal.svg';
+import planta from '@/assets/planta.svg';
+import psiquico from '@/assets/psíquico.svg';
+import roca from '@/assets/roca.svg';
+import siniestro from '@/assets/siniestro.svg';
+import tierra from '@/assets/tierra.svg';
+import veneno from '@/assets/veneno.svg';
+import volador from '@/assets/volador.svg';
 
 // --- interfaces ---
+
+interface TypeImages {
+  [key: string]: string;
+}
 
 interface Variacion {
   front: string;
@@ -57,6 +79,27 @@ const pokemonData = ref<Pokemon[]>([]);
 const filtering = ref("none");
 const isShinyActive = ref(false);
 const isMegaActive = ref(false);
+
+const typeImages : TypeImages = {
+  acero,
+  agua,
+  bicho,
+  dragon,
+  electrico,
+  fantasma,
+  fuego,
+  hada,
+  hielo,
+  lucha,
+  normal,
+  planta,
+  psiquico,
+  roca,
+  siniestro,
+  tierra,
+  veneno,
+  volador,
+};
 
 // --- métodos ---
 
@@ -159,8 +202,8 @@ const tierFilter = (tier: number) => {
           <section class="name-container">
             <span class="pokedex-name"> {{ pkmn.nombre }} </span>
             <section class="type-section">
-              <img class="type-icon" :src="'@/assets/'+ pkmn.tipo_1 +'.svg'" alt="Tipo 1" />
-              <img v-if="pkmn.tipo_2" class="type-icon" :src="'@/asddsets/'+ pkmn.tipo_2 +'.svg'" alt="Tipo 1" />
+              <img class="type-icon" :src="typeImages[pkmn.tipo_1]" alt="Tipo 1" />
+              <img v-if="pkmn.tipo_2" class="type-icon" :src="typeImages[pkmn.tipo_2]" alt="Tipo 2" />
             </section>
           </section>
         </section>
