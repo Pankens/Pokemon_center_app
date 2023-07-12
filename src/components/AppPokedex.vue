@@ -7,8 +7,8 @@ import { ref, onMounted } from 'vue';
 import acero from '@/assets/acero.svg';
 import agua from '@/assets/agua.svg';
 import bicho from '@/assets/bicho.svg';
-import dragon from '@/assets/dragón.svg';
-import electrico from '@/assets/eléctrico.svg';
+import dragon from '@/assets/dragon.svg';
+import electrico from '@/assets/electrico.svg';
 import fantasma from '@/assets/fantasma.svg';
 import fuego from '@/assets/fuego.svg';
 import hada from '@/assets/hada.svg';
@@ -16,7 +16,7 @@ import hielo from '@/assets/hielo.svg';
 import lucha from '@/assets/lucha.svg';
 import normal from '@/assets/normal.svg';
 import planta from '@/assets/planta.svg';
-import psiquico from '@/assets/psíquico.svg';
+import psiquico from '@/assets/psiquico.svg';
 import roca from '@/assets/roca.svg';
 import siniestro from '@/assets/siniestro.svg';
 import tierra from '@/assets/tierra.svg';
@@ -156,6 +156,10 @@ const tierFilter = (tier: number) => {
 
 };
 
+const removeAccents = (str: string) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 </script>
 
 <template>
@@ -202,8 +206,8 @@ const tierFilter = (tier: number) => {
           <section class="name-container">
             <span class="pokedex-name"> {{ pkmn.nombre }} </span>
             <section class="type-section">
-              <img class="type-icon" :src="typeImages[pkmn.tipo_1]" alt="Tipo 1" />
-              <img v-if="pkmn.tipo_2" class="type-icon" :src="typeImages[pkmn.tipo_2]" alt="Tipo 2" />
+              <img class="type-icon" :src="typeImages[removeAccents(pkmn.tipo_1)]" alt="Tipo 1" />
+              <img v-if="pkmn.tipo_2" class="type-icon" :src="typeImages[removeAccents(pkmn.tipo_2)]" alt="Tipo 2" />
             </section>
           </section>
         </section>
@@ -233,6 +237,7 @@ const tierFilter = (tier: number) => {
   flex-wrap: wrap;
   background: #fcfcfc;
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 .pokemon-card {
@@ -327,10 +332,26 @@ const tierFilter = (tier: number) => {
 }
 
 .dropdown-content {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
   position: absolute;
   bottom: 100%;
   z-index: 1;
+  transition: all 0.5s;
+  transform: translateY(3rem);
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  background: #fff;
+  padding: 1rem 0;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  border-radius: 1rem;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .filter-option {
@@ -345,14 +366,21 @@ const tierFilter = (tier: number) => {
   opacity: 100%;
 }
 
-.dropdown:hover .dropdown-content {
-  background: #fff;
-  padding: 1rem 0;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  display: flex;
-  border-radius: 1rem;
-  flex-direction: column;
-  gap: 1rem;
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.025); 
+}
+
+::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: rgba(79, 54, 95, 0.5);
 }
 
 </style>
