@@ -2,11 +2,11 @@
 
 let getPkmn = async (id = null) => {
   if (id == null) {
-    return await fetch('http://127.0.0.1:5000/pokemon')
+    return await fetch('http://devmiguelfg.pythonanywhere.com/pokemon/')
       .then((response) => response.json())
       .catch((error) => console.log(error));
   } else {
-    return await fetch('http://127.0.0.1:5000/pokemon/' + id)
+    return await fetch('http://devmiguelfg.pythonanywhere.com/pokemon/' + id)
       .then((response) => response.json())
       .catch((error) => console.log(error));
   }
