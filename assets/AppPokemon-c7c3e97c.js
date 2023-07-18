@@ -1,0 +1,1 @@
+import{d as o,c as n,t,o as p}from"./index-f3ee8a9f.js";const m=o({__name:"AppPokemon",props:{pokemon:{type:Object,required:!0}},setup(e){return console.log(e.pokemon),(s,c)=>(p(),n("h2",null,t(e.pokemon),1))}});export{m as default};
